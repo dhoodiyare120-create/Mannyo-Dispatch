@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANNYO Admin — Website</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="/">
+      <img src="/logo-white.png" alt="MANNYO">
+      <span>Website Admin</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="mainNav" aria-label="Main navigation">
+      <a href="/">View Website</a>
+      <a href="#" id="logoutLink" hidden>Log Out</a>
+    </nav>
+  </div>
+</header>
+
+<main class="admin-wrap">
+  <div id="authBox" class="admin-card">
+    <h2 id="authTitle">Admin Login</h2>
+    <p id="authDesc" style="color:var(--muted)">Log in to change the website, post announcements, and read contact messages.</p>
+    <form id="authForm">
+      <div id="nameRow" hidden>
+        <label for="authName">Your name</label>
+        <input id="authName" autocomplete="name">
+      </div>
+      <label for="authEmail">Email</label>
+      <input id="authEmail" type="email" required autocomplete="email">
+      <label for="authPassword">Password</label>
+      <input id="authPassword" type="password" required autocomplete="current-password" minlength="8">
+      <button class="btn secondary" type="submit" id="authBtn" style="margin-top:18px;width:100%">Log In</button>
+      <p class="form-note" id="authNote"></p>
+    </form>
+  </div>
+
+  <div id="panel" hidden>
+    <div class="topbar">
+      <h1>Website Admin</h1>
+      <span class="spacer"></span>
+      <span id="adminWho" style="color:var(--muted);font-weight:600"></span>
+      <button class="small-btn" id="logoutBtn" type="button">Log Out</button>
+    </div>
+    <div class="admin-tabs" role="tablist">
+      <button class="active" data-tab="homepage" type="button">Homepage Content</button>
+      <button data-tab="services" type="button">Services</button>
+      <button data-tab="posts" type="button">Posts &amp; News</button>
+      <button data-tab="messages" type="button">Messages <span id="msgCount"></span></button>
+    </div>
+
+    <div class="admin-card" data-pane="homepage">
+      <h2>Homepage Content</h2>
+      <p style="color:var(--muted)">Changes show on the public website immediately after you save.</p>
+      <form id="settingsForm">
+        <label for="fHeroHeadline">Hero headline</label>
+        <input id="fHeroHeadline" data-key="hero_headline">
+        <label for="fHeroSub">Hero subheading</label>
+        <textarea id="fHeroSub" data-key="hero_sub"></textarea>
+        <label for="fAbout">About text</label>
+        <textarea id="fAbout" data-key="about_text"></textarea>
+        <label for="fServicesIntro">Services introduction</label>
+        <textarea id="fServicesIntro" data-key="services_intro"></textarea>
+        <label for="fHowIntro">How-it-works introduction</label>
+        <textarea id="fHowIntro" data-key="how_it_works_intro"></textarea>
+        <label for="fDrivers">Drive With MANNYO text</label>
+        <textarea id="fDrivers" data-key="drivers_text"></textarea>
+        <label for="fAreas">Areas text</label>
+        <textarea id="fAreas" data-key="areas_text"></textarea>
+        <label for="fEmail">Contact email shown on the site</label>
+        <input id="fEmail" data-key="contact_email" type="email">
+        <button class="btn secondary" type="submit" style="margin-top:18px">Save Homepage Content</button>
+        <p class="form-note" id="settingsNote"></p>
+      </form>
+    </div>
+
+    <div class="admin-card" data-pane="services" hidden>
+      <h2>Services</h2>
+      <p style="color:var(--muted)">Edit the title and description of each of the six services.</p>
+      <div id="servicesList"></div>
+      <p class="form-note" id="servicesNote"></p>
+    </div>
+
+    <div class="admin-card" data-pane="posts" hidden>
+      <h2>Posts &amp; Announcements</h2>
+      <p style="color:var(--muted)">Posts appear on the public website under News &amp; Announcements.</p>
+      <form id="postForm">
+        <label for="postTitle">Title</label>
+        <input id="postTitle" required>
+        <label for="postBody">Body</label>
+        <textarea id="postBody"></textarea>
+        <button class="btn secondary" type="submit" style="margin-top:14px">Publish Post</button>
+        <p class="form-note" id="postNote"></p>
+      </form>
+      <div id="postsList" style="margin-top:20px"></div>
+    </div>
+
+    <div class="admin-card" data-pane="messages" hidden>
+      <h2>Contact Messages</h2>
+      <p style="color:var(--muted)">Messages from the business and driver contact forms. Newest first.</p>
+      <div id="messagesList"></div>
+    </div>
+  </div>
+</main>
+
+<script src="/admin.js"></script>
+</body>
+</html>

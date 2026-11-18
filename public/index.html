@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANNYO Logistics and Hospitality, LLC — Twin Cities Delivery</title>
+<meta name="description" content="Fast, reliable last-mile delivery across the Twin Cities, Minnesota. From our wings to your door.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <img src="/logo-white.png" alt="MANNYO — From our wings to your door.">
+      <span>Logistics and Hospitality, LLC</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="mainNav" aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#areas">Areas</a>
+      <a href="#estimator">Estimator</a>
+      <a href="#drivers">Drive With Us</a>
+      <a href="#news">News</a>
+      <a href="#contact" class="cta">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <img class="logo-hero" src="/logo-white.png" alt="MANNYO logo">
+      <p class="slogan">From our wings to your door.</p>
+      <h1 id="heroHeadline">Your Deliveries, Delivered On Time.</h1>
+      <p class="lede" id="heroSub">Fast, reliable last-mile delivery across the Twin Cities, Minnesota — from our wings to your door.</p>
+      <a class="btn" href="#contact">Get a Delivery Quote</a>
+      <a class="btn ghost" href="#drivers">Drive With MANNYO</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>Our Services</h2>
+      <p class="section-sub" id="servicesIntro">One trusted local partner for all your deliveries. Reliable drivers, flexible scheduling, and careful handling on every stop.</p>
+      <div class="grid" id="servicesGrid"><!-- filled from /api/content --></div>
+    </div>
+  </section>
+
+  <section id="how" style="background:#fff">
+    <div class="wrap">
+      <h2>How It Works</h2>
+      <p class="section-sub" id="howIntro">Getting a delivery moving with MANNYO takes three simple steps.</p>
+      <div class="grid steps">
+        <div class="card step"><span class="num">1</span><h3>Tell Us What You Need</h3><p>Send your delivery request — what, where, and when. One call or one form is all it takes.</p></div>
+        <div class="card step"><span class="num">2</span><h3>We Match a Local Driver</h3><p>A vetted Twin Cities driver picks up your delivery and heads out on the route.</p></div>
+        <div class="card step"><span class="num">3</span><h3>Delivered — On Time</h3><p>Careful handling on every stop, and your customer gets their delivery when promised.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="areas" class="band">
+    <div class="wrap">
+      <h2>Areas We Cover</h2>
+      <p class="section-sub" style="color:#dbeafe" id="areasText">We deliver across the Twin Cities metro — Minneapolis, St. Paul, and the surrounding suburbs.</p>
+      <div class="areas" id="areasList">
+        <span class="area">Minneapolis</span><span class="area">St. Paul</span><span class="area">Bloomington</span>
+        <span class="area">Brooklyn Park</span><span class="area">Plymouth</span><span class="area">Maple Grove</span>
+        <span class="area">Eden Prairie</span><span class="area">Minnetonka</span><span class="area">Eagan</span>
+        <span class="area">Burnsville</span><span class="area">Woodbury</span><span class="area">Roseville</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="estimator">
+    <div class="wrap">
+      <h2>Route Estimator</h2>
+      <p class="section-sub">Get a quick idea of what a route could cost. Enter your stops and miles below.</p>
+      <div class="card estimator">
+        <label for="estBasis">How is the route priced?</label>
+        <select id="estBasis">
+          <option value="per_stop">Per stop</option>
+          <option value="per_mile">Per mile</option>
+        </select>
+        <label for="estStops">Number of stops</label>
+        <input id="estStops" type="number" min="1" value="10">
+        <label for="estMiles">Total miles</label>
+        <input id="estMiles" type="number" min="1" value="40">
+        <button class="btn secondary" id="estBtn" style="margin-top:18px;width:100%">Estimate My Route</button>
+        <div class="estimate-result" id="estResult" hidden></div>
+        <p class="fine">Example rates only (per stop $12.00, per mile $2.50) — your contract rate may differ. Contact us for an exact quote.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="drivers" class="drivers-band">
+    <div class="wrap">
+      <h2>Drive With MANNYO</h2>
+      <p class="section-sub" id="driversText">Drive with MANNYO and earn on your schedule. As a 1099 independent driver you use your own car, choose your own hours, and get paid per stop or per mile — with weekly pay.</p>
+      <div class="grid two">
+        <div class="card"><h3>🕒 Your Schedule</h3><p>Choose the routes and hours that work for you. Be your own boss.</p></div>
+        <div class="card"><h3>💵 Paid Per Stop / Per Mile</h3><p>Clear pay for every stop and every mile — with weekly pay.</p></div>
+        <div class="card"><h3>🚗 Your Own Car</h3><p>No company vehicle needed. Drive the car you already have.</p></div>
+        <div class="card"><h3>✅ Simple Requirements</h3><p>Valid Minnesota license, your own registered and insured vehicle, a smartphone with GPS, a background check, and a W-9.</p></div>
+      </div>
+      <p style="text-align:center;margin-top:28px"><a class="btn" href="#contact" data-contact-type="driver">Apply to Drive</a></p>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="wrap">
+      <h2>News &amp; Announcements</h2>
+      <p class="section-sub">The latest from MANNYO.</p>
+      <div id="postsList"><!-- filled from /api/content --></div>
+    </div>
+  </section>
+
+  <section id="about" style="background:#fff">
+    <div class="wrap" style="max-width:720px">
+      <h2>About MANNYO</h2>
+      <p id="aboutText" style="text-align:center;color:var(--muted)">MANNYO Logistics and Hospitality, LLC is a Twin Cities delivery and transportation company. We do not own a fleet — we work with vetted local 1099 independent drivers who use their own cars, so we can scale to your volume and deliver with care on every stop.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact Us</h2>
+      <p class="section-sub">Tell us what you need — a business delivery or a driving job. We will get back to you.</p>
+      <div class="tabs" role="tablist">
+        <button id="tabBusiness" class="active" type="button">For Businesses</button>
+        <button id="tabDriver" type="button">For Drivers</button>
+      </div>
+      <form class="card contact-form" id="contactForm">
+        <label for="cName">Your name</label>
+        <input id="cName" required autocomplete="name">
+        <label for="cEmail">Email</label>
+        <input id="cEmail" type="email" required autocomplete="email">
+        <label for="cPhone">Phone (optional)</label>
+        <input id="cPhone" type="tel" autocomplete="tel">
+        <label for="cMessage" id="cMessageLabel">What do you need delivered?</label>
+        <textarea id="cMessage" required></textarea>
+        <button class="btn secondary" type="submit" style="margin-top:18px;width:100%">Send Message</button>
+        <p class="form-note" id="contactNote"></p>
+      </form>
+      <p style="text-align:center;margin-top:18px">Or email us directly: <a id="contactEmail" href="mailto:dhoodiyare120@gmail.com">dhoodiyare120@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/logo-white.png" alt="MANNYO logo">
+    <p class="slogan">From our wings to your door.</p>
+    <p>MANNYO Logistics and Hospitality, LLC<br>Twin Cities, Minnesota<br><a href="mailto:dhoodiyare120@gmail.com">dhoodiyare120@gmail.com</a></p>
+    <p style="font-size:.85rem;opacity:.8">© 2026 MANNYO Logistics and Hospitality, LLC. All rights reserved. · <a href="/admin">Admin</a></p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
