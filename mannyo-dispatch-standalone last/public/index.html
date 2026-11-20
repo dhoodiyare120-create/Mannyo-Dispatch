@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MANNYO Dispatch — MANNYO Logistics and Hospitality, LLC</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <button id="menuBtn" type="button" aria-label="Menu">☰</button>
+  <div class="brand">
+    <img src="logo-white.png" alt="mannyo logo">
+    <div>
+      <h1>MANNYO Dispatch</h1>
+      <p class="sub">MANNYO Logistics and Hospitality, LLC — Twin Cities, MN</p>
+    </div>
+  </div>
+  <div class="top-title"><span id="topTabName">Board</span> ▾</div>
+  <div class="top-right hidden" id="userBar"><span id="userLabel"></span> <button id="logoutBtn">Log out</button></div>
+</header>
+
+<div class="shell">
+  <!-- Blue side panel, like the reference photo -->
+  <nav id="sideNav" aria-label="MANNYO menu">
+    <button data-tab="board" class="active"><span class="ico">📋</span>Board</button>
+    <button data-tab="routes"><span class="ico">🗺️</span>Routes</button>
+    <button data-tab="drivers" id="driversNavBtn"><span class="ico">👤</span>Drivers</button>
+    <button data-tab="pay"><span class="ico">💲</span>Pay</button>
+    <div class="nav-sep"></div>
+    <div class="nav-label">Driver actions</div>
+    <button data-action="scan"><span class="ico">📷</span>Scan</button>
+    <button data-action="picked_up"><span class="ico">📦</span>Picked up</button>
+    <button data-action="delivered"><span class="ico">✅</span>Delivered</button>
+  </nav>
+
+  <main>
+    <!-- Login / setup -->
+    <div class="auth-wrap" id="authCard">
+      <section class="card">
+        <img src="logo.png" alt="mannyo — MANNYO Logistics and Hospitality, LLC" class="auth-logo">
+        <h2 id="authTitle">Log in</h2>
+        <p id="setupNote" class="hidden">No owner account exists yet. Create the first owner account below — this is the one-time setup.</p>
+        <form id="authForm">
+          <label id="nameLabel" class="hidden">Your name <input id="authName" type="text" autocomplete="name"></label>
+          <label>Email <input id="authEmail" type="email" required autocomplete="username"></label>
+          <label>Password <input id="authPassword" type="password" required autocomplete="current-password" minlength="8"></label>
+          <p id="authError" class="error"></p>
+          <button type="submit" id="authBtn">Log in</button>
+        </form>
+        <p class="hint">Owner and drivers log in here from any computer or phone. Drivers: use the email and password the owner gave you.</p>
+      </section>
+    </div>
+
+    <!-- App -->
+    <div id="app" class="hidden">
+      <nav id="tabs">
+        <button data-tab="board" class="active">Board</button>
+        <button data-tab="routes">Routes</button>
+        <button data-tab="drivers" id="driversTabBtn">Drivers</button>
+        <button data-tab="pay">Pay</button>
+      </nav>
+
+      <section id="tab-board" class="tab">
+        <h2>Today's board</h2>
+        <div id="boardCounts" class="counts"></div>
+        <div id="boardList"></div>
+      </section>
+
+      <section id="tab-routes" class="tab hidden">
+        <h2>Routes</h2>
+        <form id="routeForm" class="card owner-only">
+          <h3>New route</h3>
+          <label>Client <input id="rClient" required placeholder="e.g. LaserShip"></label>
+          <label>Pickup <input id="rPickup" required placeholder="Pickup address / facility"></label>
+          <label>Area <input id="rArea" placeholder="e.g. Minneapolis"></label>
+          <label>Date <input id="rDate" type="date"></label>
+          <label>Pay basis
+            <select id="rBasis">
+              <option value="per_stop">Per stop</option>
+              <option value="per_mile">Per mile</option>
+              <option value="flat">Flat route rate</option>
+            </select>
+          </label>
+          <label>Client rate <input id="rClientRate" type="number" step="0.01" value="12" title="Example: $12 per stop — replace with the real contract rate"></label>
+          <label>Driver rate <input id="rDriverRate" type="number" step="0.01" value="7" title="Example: $7 per stop"></label>
+          <label>Other cost <input id="rOther" type="number" step="0.01" value="0.50" title="Example: $0.50 per stop"></label>
+          <label>Miles (per-mile routes) <input id="rMiles" type="number" step="0.1" value="0"></label>
+          <label>Assign driver <select id="rDriver"><option value="">— needs driver —</option></select></label>
+          <p class="hint">Example rates shown ($12 client / $7 driver / $0.50 other = $4.50 MANNYO margin per stop). Replace them with the real contract rates before quoting or paying.</p>
+          <button type="submit">Create route</button>
+        </form>
+        <div id="routeList"></div>
+        <div id="routeDetail" class="card hidden"></div>
+      </section>
+
+      <section id="tab-drivers" class="tab hidden">
+        <h2>1099 driver roster</h2>
+        <form id="driverForm" class="card owner-only">
+          <h3>Add driver + create their login</h3>
+          <label>Name <input id="dName" required></label>
+          <label>Email <input id="dEmail" type="email" required></label>
+          <label>Phone <input id="dPhone"></label>
+          <label>Login password (min 8 characters — share it with the driver securely, not in a public post) <input id="dPassword" type="password" minlength="8" required></label>
+          <button type="submit">Add driver</button>
+        </form>
+        <div id="driverList"></div>
+      </section>
+
+      <section id="tab-pay" class="tab hidden">
+        <h2>Pay</h2>
+        <div id="paySummary"></div>
+        <div class="card">
+          <h3>Pricing calculator</h3>
+          <label>Pay basis
+            <select id="cBasis"><option value="per_stop">Per stop</option><option value="per_mile">Per mile</option><option value="flat">Flat route rate</option></select>
+          </label>
+          <label>Client rate <input id="cClient" type="number" step="0.01" value="12"></label>
+          <label>Driver rate <input id="cDriver" type="number" step="0.01" value="7"></label>
+          <label>Other cost <input id="cOther" type="number" step="0.01" value="0.50"></label>
+          <label>Stops <input id="cStops" type="number" value="25"></label>
+          <label>Miles <input id="cMiles" type="number" step="0.1" value="80"></label>
+          <button id="calcBtn" type="button">Calculate</button>
+          <p id="calcResult"></p>
+          <p class="hint">Example: $12 client − $7 driver − $0.50 other = $4.50 MANNYO margin per stop. Use one basis per contract — set the other rate to $0. Replace examples with real contract rates.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
